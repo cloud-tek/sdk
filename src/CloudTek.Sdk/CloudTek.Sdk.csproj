@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.Build.NoTargets">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <BuildOutputTargetFolder>build\</BuildOutputTargetFolder>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageType>MSBuildSdk</PackageType>
+    <Description>CloudTek Dotnet Sdk</Description>
+    <PackageTags>MSBuild MSBuildSdk</PackageTags>
+    <DevelopmentDependency>true</DevelopmentDependency>
+    <PackageVersion>0.0.1</PackageVersion>
+  </PropertyGroup>
+</Project>

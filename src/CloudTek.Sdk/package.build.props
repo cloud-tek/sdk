@@ -1,0 +1,19 @@
+<Project>
+  <PropertyGroup>
+    <TargetFrameworks>net8.0</TargetFrameworks>
+    <Authors>CloudTek</Authors>
+    <Company>CloudTek</Company>
+    <Copyright>Copyright 2024 CloudTek</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/cloudtek/sdk</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)$(MSBuildProjectName)\README.md" Pack="true" PackagePath="\"/>
+    <None Include="$(MSBuildThisFileDirectory)$(MSBuildProjectName)\CHANGELOG.md" Pack="true" PackagePath="\"/>
+  </ItemGroup>
+
+</Project>
