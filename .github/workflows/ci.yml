@@ -27,7 +27,7 @@ jobs:
     uses: ./.github/workflows/template.yml
     name: build
     with:
-      Directory: ${{ github.workspace }}/src/CloudTek.Sdk
+      Directory: src/CloudTek.Sdk
       NetVersion: "8.0.100"
       Build:        true
       Pack:         true

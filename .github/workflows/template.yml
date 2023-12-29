@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ${{ inputs.Directory }}
+        working-directory: ${{ github.workspace }}/${{ inputs.Directory }}
     # outputs:
     #   nupkgFilename: ${{ steps.nupkg.outputs.filename }}
     steps:
