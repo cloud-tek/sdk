@@ -55,6 +55,7 @@ jobs:
       run: dotnet restore
     - name: dotnet build
       if: inputs.Build
+      working-directory: ${{ github.workspace }}
       run: dotnet build --configuration Release --no-restore
     - name: dotnet pack
       if: inputs.Pack
