@@ -42,7 +42,7 @@ The `Directory.Build.props` file should be updated in order to actually import t
     <PropertyGroup>
         <TargetFramework>$(NetCoreVersions)</TargetFramework>
     </PropertyGroup>
-    
+
     <!-- other project-specific properties -->
 </Project>
 ```
@@ -75,31 +75,30 @@ In order to override or disable some of the imported components, the behavior ch
 * `Directory.Build.props` - repo wide:
 ```xml
 <Project>
-    <Import Project="Sdk.props" Sdk="CloudTek.DotnetSdk" />
-    <PropertyGroup>
-        <TargetFramework>$(NetCoreVersions)</TargetFramework>
-    </PropertyGroup>
+  <Import Project="Sdk.props" Sdk="CloudTek.DotnetSdk" />
+  <PropertyGroup>
+    <TargetFramework>$(NetCoreVersions)</TargetFramework>
+  </PropertyGroup>
 
-    <PropertyGroup>
-        <!-- The line below disables nullable reference types -->
-        <nullable>disable</nullable>
+  <PropertyGroup>
+    <!-- The line below disables nullable reference types -->
+    <nullable>disable</nullable>
         <!-- The line below disables the StyleCop config -->
-        <AllegroDotnetSdkEnableStyleCop>false</AllegroDotnetSdkEnableStyleCop>
-    </PropertyGroup>
-    
-    <!-- other repo-specific properties -->
+    <CloudTekSdkEnableStyleCop>false</CloudTekSdkEnableStyleCop>
+  </PropertyGroup>
+  <!-- other repo-specific properties -->
 </Project>
 ```
 
-* `.csproj` - project settings:
+* `*.csproj` - project settings:
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <OutputType>Exe</OutputType>
-        <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    </PropertyGroup>
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <GenerateDocumentationFile>true<GenerateDocumentationFile>
+  </PropertyGroup>
 
-    <!-- other project-specific properties -->
+  <!-- other project-specific properties -->
 </Project>
 ```
 
@@ -122,9 +121,14 @@ Make sure you have enabled:
 - Preferences -> Editor -> Inspection Settings -> Roslyn -> Enable Roslyn analyzers and Source Generators
 - Preferences -> Editor -> Inspection Settings -> Roslyn -> Include Roslyn analyzers in Solution-Wide Analysis
 
-**Be aware!**
-Only some analyzers's warnings can be addressed by auto-format or code cleanup. Some of the warnings are not covered by Rider, and its settings need to be adjusted.  
-For that, in editor.globalconfig is `# ReSharper properties` section with some already defined settings which align with analyzers. If you find some inconsistency and you find appropriate settings in Rider, which will fix it - please, contribute! :)
+> **(!) Important (!)**
+>
+> Only some analyzers's warnings can be addressed by auto-format or code cleanup.
+>
+> Some of the warnings are not covered by Rider, and its settings need to be adjusted.
+>
+> For that, in editor.globalconfig is `# ReSharper properties` section with some already defined settings which align with analyzers. If you find some inconsistency and you find appropriate settings in Rider, which will fix it - please, contribute! :)
+
 ## License
 Copyright 2024 CloudTek
 

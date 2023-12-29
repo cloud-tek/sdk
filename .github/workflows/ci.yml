@@ -1,0 +1,38 @@
+name: ci
+
+env:
+  NETCORE_VERSION: 8.0.100
+  DOTNET_ROLL_FORWARD: Major
+
+on:
+  push:
+    branches:
+    - main
+    - feature/*
+    paths:
+      - ".github/workflows/**"
+      - "src/**"
+  pull_request:
+    types:
+    - closed
+    branches:
+    - main
+    paths:
+      - ".github/workflows/**"
+      - "src/**"
+  workflow_dispatch:
+    inputs: {}
+
+jobs:
+  build:
+    uses: ./.github/workflows/template.yml
+    name: build
+    with:
+      Directory: ${{ github.workspace }}
+      NetCoreVersion: ${{ env.NETCORE_VERSION }}
+      Build:        true
+      Pack:         true
+      NuGetApiUrl:  'https://api.nuget.org/v3/index.json'
+    secrets:
+      NuGetUsername:      ${{ secrets.NUGET_USERNAME }}
+      NuGetPassword:      ${{ secrets.NUGET_PASSWORD }}
