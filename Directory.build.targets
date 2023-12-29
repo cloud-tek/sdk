@@ -1,4 +1,4 @@
-<Project>
+<!-- <Project>
   <Sdk Name="Microsoft.Build.CentralPackageVersions" />
 
   <ItemGroup Condition="'$(IsPackable)' == 'true'">
@@ -10,4 +10,4 @@
           PackagePath="\"
           Visible="false" />
   </ItemGroup>
-</Project>
+</Project> -->

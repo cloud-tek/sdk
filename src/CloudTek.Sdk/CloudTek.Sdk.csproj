@@ -11,4 +11,14 @@
     <PackageVersion>0.0.1</PackageVersion>
     <IsPackable>true</IsPackable>
   </PropertyGroup>
+
+   <ItemGroup Condition="'$(IsPackable)' == 'true'">
+    <None Include="Sdk\**"
+          Pack="true"
+          PackagePath="Sdk\" />
+    <None Include="$(PackageIconPath)"
+          Pack="true"
+          PackagePath="\"
+          Visible="false" />
+  </ItemGroup>
 </Project>
