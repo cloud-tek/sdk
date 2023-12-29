@@ -1,9 +1,5 @@
 name: ci
 
-env:
-  NETCORE_VERSION: 8.0.100
-  DOTNET_ROLL_FORWARD: Major
-
 on:
   push:
     branches:
@@ -23,13 +19,16 @@ on:
   workflow_dispatch:
     inputs: {}
 
+env:
+  DOTNET_ROLL_FORWARD: Major
+
 jobs:
   build:
     uses: ./.github/workflows/template.yml
     name: build
     with:
       Directory: ${{ github.workspace }}
-      NetCoreVersion: ${{ env.NETCORE_VERSION }}
+      NetCoreVersion: "8.0.100"
       Build:        true
       Pack:         true
       NuGetApiUrl:  'https://api.nuget.org/v3/index.json'
