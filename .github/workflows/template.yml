@@ -55,7 +55,7 @@ jobs:
     - name: dotnet build
       if: inputs.Build
       working-directory: ${{ github.workspace }}
-      run: dotnet build --configuration Release --no-restore --debug
+      run: dotnet build --configuration Release --no-restore --debug --verbosity diagnostic
     - name: dotnet pack
       if: inputs.Pack
       run: dotnet pack -v normal -c Release --no-build --include-symbols --include-source -o package
