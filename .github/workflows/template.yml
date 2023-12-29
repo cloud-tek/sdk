@@ -42,8 +42,9 @@ jobs:
     - name: setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: ${{ inputs.NetCoreVersion }}
+        dotnet-version: ${{ inputs.NetVersion }}
     - name: dotnet tool restore
+      working-directory: ${{ github.workspace }}
       run: dotnet tool restore
     - name: dotnet restore
       if: inputs.Build || inputs.Pack
