@@ -8,8 +8,7 @@ on:
       NetVersion:
         description: 'Version of .NET to use'
         type: string
-        required: false
-        default: '8.0.x'
+        required: true
       Build:
         description: 'Build the project'
         type: boolean
@@ -56,7 +55,7 @@ jobs:
     - name: dotnet build
       if: inputs.Build
       working-directory: ${{ github.workspace }}
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build --configuration Release --no-restore --debug
     - name: dotnet pack
       if: inputs.Pack
       run: dotnet pack -v normal -c Release --no-build --include-symbols --include-source -o package
