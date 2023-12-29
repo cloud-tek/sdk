@@ -28,7 +28,7 @@ jobs:
     name: build
     with:
       Directory: ${{ github.workspace }}
-      NetCoreVersion: "8.0.100"
+      NetVersion: "8.0.100"
       Build:        true
       Pack:         true
       NuGetApiUrl:  'https://api.nuget.org/v3/index.json'
