@@ -9,5 +9,6 @@
     <PackageTags>MSBuild MSBuildSdk</PackageTags>
     <DevelopmentDependency>true</DevelopmentDependency>
     <PackageVersion>0.0.1</PackageVersion>
+    <IsPackable>true</IsPackable>
   </PropertyGroup>
 </Project>
