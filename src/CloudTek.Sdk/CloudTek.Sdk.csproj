@@ -38,9 +38,9 @@
   </PropertyGroup>
 
   <PropertyGroup Label="NuGet Properties">
-    <Au§thors>CloudTek</Authors>
-    <Co§mpany>CloudTek</Company>
-    <Co§pyright>© CloudTek. All rights reserved.</Copyright>
+    <Authors>CloudTek</Authors>
+    <Company>CloudTek</Company>
+    <Copyright>© CloudTek. All rights reserved.</Copyright>
     <Description>$(MSBuildProjectName)</Description>
     <Tags>CloudTek</Tags>
   </PropertyGroup>
