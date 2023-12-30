@@ -45,7 +45,7 @@ jobs:
     - name: diag
       working-directory: ${{ github.workspace }}
       run: |
-        tree -a
+        ls -l
         pwd
         echo ${{ github.workspace }}
     - name: dotnet tool restore
