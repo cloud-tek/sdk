@@ -29,10 +29,9 @@ on:
         type: string
         required: false
     secrets:
-      NuGetUsername:
+      NuGetApiKey:
         required: false
-      NuGetPassword:
-        required: false
+
 jobs:
   build:
     runs-on: ubuntu-latest

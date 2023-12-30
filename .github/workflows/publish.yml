@@ -19,5 +19,4 @@ jobs:
       Push:         true
       NuGetApiUrl:  'https://api.nuget.org/v3/index.json'
     secrets:
-      NuGetUsername:      ${{ secrets.NUGET_USERNAME }}
-      NuGetPassword:      ${{ secrets.NUGET_PASSWORD }}
+      NuGetApiKey:  ${{ secrets.NUGET_API_KEY }}
