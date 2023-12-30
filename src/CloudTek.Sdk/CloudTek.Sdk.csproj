@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.Build.NoTargets">
+  <Sdk Name="Microsoft.Build.CentralPackageVersions" />
+
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <BuildOutputTargetFolder>build\</BuildOutputTargetFolder>
@@ -11,4 +13,45 @@
     <PackageVersion>0.0.1</PackageVersion>
     <IsPackable>true</IsPackable>
   </PropertyGroup>
+
+  <PropertyGroup Label="Project Settings" >
+    <Platforms>AnyCPU</Platforms>
+    <TargetPlatform>AnyCPU</TargetPlatform>
+    <ErrorReport>prompt</ErrorReport>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
+    <NoWarn>$(NoWarn);NU5128;SA0001</NoWarn>
+    <RestoreUseStaticGraphEvaluation>true</RestoreUseStaticGraphEvaluation>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Build Output" >
+    <BaseOutputPath>$(MSBuildThisFileDirectory)\bin\$(MSBuildProjectName)</BaseOutputPath>
+    <BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)\obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
+    <PackageOutputPath>$(MSBuildThisFileDirectory)\artifacts\packages\$(MSBuildProjectName)</PackageOutputPath>
+    <DocumentationFileValue>$(MSBuildThisFileDirectory)\bin\$(MSBuildProjectName)\$(Configuration)\$(TargetFramework)\$(MSBuildProjectName).xml</DocumentationFileValue>
+  </PropertyGroup>
+
+  <PropertyGroup Label="NuGet Properties">
+    <Au§thors>CloudTek</Authors>
+    <Co§mpany>CloudTek</Company>
+    <Co§pyright>© CloudTek. All rights reserved.</Copyright>
+    <Description>$(MSBuildProjectName)</Description>
+    <Tags>CloudTek</Tags>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(IsPackable)' == 'true'">
+    <None Include="Sdk\**"
+          Pack="true"
+          PackagePath="Sdk\" />
+    <None Include="$(PackageIconPath)"
+          Pack="true"
+          PackagePath="\"
+          Visible="false" />
+  </ItemGroup>
 </Project>
