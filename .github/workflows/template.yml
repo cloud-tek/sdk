@@ -73,7 +73,10 @@ jobs:
       with:
         name: packages
         path: packages
-    - name: diag
+    - name: dotnet nuget push
       run: |
-        tree -a
+        shopt -s globstar
+        for file in ./artifacts/packages/**/*.nupkg; do
+          echo $file
+        done
       #dotnet nuget push signed/${{needs.build.outputs.nupkgFilename}} --api-key ${{ secrets.nugetApiKey }} --source https://api.nuget.org/v3/index.json
