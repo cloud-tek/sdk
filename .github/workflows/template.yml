@@ -77,6 +77,5 @@ jobs:
       run: |
         shopt -s globstar
         for file in ./packages/**/*.nupkg; do
-          echo $file
+          dotnet nuget push $file --api-key ${{ secrets.NuGetApiKey }} --source ${{ inputs.NuGetApiUrl }}
         done
-      #dotnet nuget push signed/${{needs.build.outputs.nupkgFilename}} --api-key ${{ secrets.nugetApiKey }} --source https://api.nuget.org/v3/index.json
