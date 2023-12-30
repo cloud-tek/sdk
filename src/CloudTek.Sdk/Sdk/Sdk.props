@@ -82,7 +82,7 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
-  <PropertyGroup Label="NuGet Properties" Condition="$(CloudTekSdkCopyright)' != ''">
+  <PropertyGroup Label="NuGet Properties" Condition="$(CloudTekSdkCopyright) != ''">
     <Authors>$(CloudTekSdkCopyright)</Authors>
     <Company>$(CloudTekSdkCopyright)</Company>
     <Copyright>© $(CloudTekSdkCopyright). All rights reserved.</Copyright>
