@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ${{ github.workspace }}/${{ inputs.Directory }}
+        working-directory: ${{ github.workspace }}
     # outputs:
     #   nupkgFilename: ${{ steps.nupkg.outputs.filename }}
     steps:
@@ -42,27 +42,18 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: ${{ inputs.NetVersion }}
-    - name: diag
-      working-directory: ${{ github.workspace }}
-      run: |
-        ls -l
-        pwd
-        echo ${{ github.workspace }}
     - name: dotnet tool restore
-      working-directory: ${{ github.workspace }}
       run: dotnet tool restore
     - name: dotnet restore
       if: inputs.Build || inputs.Pack
       run: dotnet restore
     - name: dotnet build
       if: inputs.Build
-      working-directory: ${{ github.workspace }}
       run: dotnet build --configuration Release --no-restore
     - name: dotnet pack
       if: inputs.Pack
       run: dotnet pack -v normal -c Release --no-build --include-symbols --include-source -o package
     - name: tree artifacts
-      working-directory: ${{ github.workspace }}
       run: |
         tree -a
     # - name: Verify package name & version
