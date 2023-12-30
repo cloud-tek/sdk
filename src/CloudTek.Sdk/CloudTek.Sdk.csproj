@@ -33,7 +33,7 @@
   <PropertyGroup Label="Build Output" >
     <BaseOutputPath>$(MSBuildThisFileDirectory)\bin\$(MSBuildProjectName)</BaseOutputPath>
     <BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)\obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
-    <PackageOutputPath>$(MSBuildThisFileDirectory)\artifacts\packages\$(MSBuildProjectName)</PackageOutputPath>
+    <PackageOutputPath>$(SolutionDir)\artifacts\packages\$(MSBuildProjectName)</PackageOutputPath>
     <DocumentationFileValue>$(MSBuildThisFileDirectory)\bin\$(MSBuildProjectName)\$(Configuration)\$(TargetFramework)\$(MSBuildProjectName).xml</DocumentationFileValue>
   </PropertyGroup>
 
