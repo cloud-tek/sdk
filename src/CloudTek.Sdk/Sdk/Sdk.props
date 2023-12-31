@@ -67,7 +67,8 @@
   <PropertyGroup Label="Properties dedicated for test projects" Condition="$(MSBuildProjectDirectory.Contains(`test`))">
     <!-- Exclude analyzer warnings in test projects -->
     <!-- CA1707: Identifiers should not contain underscores -->
-    <NoWarn>$(NoWarn);CA1707</NoWarn>
+    <!-- IDE0005: error EnableGenerateDocumentationFile -->
+    <NoWarn>$(NoWarn);CA1707;IDE0005</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition=" !$(MSBuildProjectDirectory.Contains(`test`)) ">
