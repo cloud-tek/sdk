@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.Build.NoTargets">
   <Sdk Name="Microsoft.Build.CentralPackageVersions" />
-
+  <Import Project="../Version.targets" />
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <BuildOutputTargetFolder>build\</BuildOutputTargetFolder>
@@ -10,7 +10,7 @@
     <Description>CloudTek Dotnet Sdk</Description>
     <PackageTags>MSBuild MSBuildSdk</PackageTags>
     <DevelopmentDependency>true</DevelopmentDependency>
-    <PackageVersion>0.0.3</PackageVersion>
+    <!-- <PackageVersion>0.0.3</PackageVersion> -->
     <IsPackable>true</IsPackable>
   </PropertyGroup>
 
