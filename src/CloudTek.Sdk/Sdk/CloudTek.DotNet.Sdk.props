@@ -1,0 +1,4 @@
+<Project>
+  <Import Project="CloudTek.DotNet.Sdk.Common.props" />
+  <Import Project="CloudTek.DotNet.Sdk.CSharp.props" Condition="'$(MSBuildProjectExtension)' == '.csproj'" />
+</Project>

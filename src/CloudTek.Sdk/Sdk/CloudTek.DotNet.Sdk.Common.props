@@ -1,0 +1,49 @@
+<Project>
+  <!-- This file configures language-independent options -->
+
+  <!-- Setup this SDKs defaults -->
+  <PropertyGroup>
+    <CloudTekDotNetSdkEnableXmlDocGeneration Condition="'$(CloudTekDotNetSdkEnableXmlDocGeneration)' == ''">true</CloudTekDotNetSdkEnableXmlDocGeneration>
+    <CloudTekDotNetSdkEnableTreatWarningsAsErrors Condition="'$(CloudTekDotNetSdkEnableTreatWarningsAsErrors)' == ''">true</CloudTekDotNetSdkEnableTreatWarningsAsErrors>
+    <CloudTekDotNetSdkEnableGlobalEditorConfig Condition="'$(CloudTekDotNetSdkEnableGlobalEditorConfig)' == ''">true</CloudTekDotNetSdkEnableGlobalEditorConfig>
+    <CloudTekDotNetSdkEnableSymbolsOnPack Condition="'$(CloudTekDotNetSdkEnableSymbolsOnPack)' == ''">true</CloudTekDotNetSdkEnableSymbolsOnPack>
+    <CloudTekDotNetSdkEnableEmbeddedSymbolsOnPack Condition="'$(CloudTekDotNetSdkEnableEmbeddedSymbolsOnPack)' == ''">false</CloudTekDotNetSdkEnableEmbeddedSymbolsOnPack>
+    <ContinuousIntegrationBuild Condition="'$(ContinuousIntegrationBuild)' == '' And ('$(CI)' == 'true' Or '$(TF_BUILD)' == 'true')">true</ContinuousIntegrationBuild>
+    <!-- https://github.com/dotnet/sdk/issues/25294 -->
+    <DefaultItemExcludesInProjectFolder>$(DefaultItemExcludesInProjectFolder);packages.lock.json</DefaultItemExcludesInProjectFolder>
+  </PropertyGroup>
+
+  <!-- Warnings as Errors -->
+  <PropertyGroup Condition="'$(CloudTekDotNetSdkEnableTreatWarningsAsErrors)' == 'true'">
+    <!-- Some devs want Warnings as Errors in local IDE development -->
+    <TreatWarningsAsErrors Condition="'$(BuildingByReSharper)' == 'true'">true</TreatWarningsAsErrors>
+    <!-- Enable Warnings as Errors in CI (or in Azure Pipelines - they don't set CI, only TF_BUILD) -->
+    <TreatWarningsAsErrors Condition="'$(ContinuousIntegrationBuild)' == 'true'">true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <!-- XML documentation adjustments -->
+  <PropertyGroup Condition="'$(CloudTekDotNetSdkEnableXmlDocGeneration)' == 'true'">
+    <!-- Documentation can be disabled per-project -->
+    <GenerateDocumentationFile Condition="'$(GenerateDocumentationFile)' == ''">true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <!-- Configure nuget-packing -->
+  <PropertyGroup Condition="'$(CloudTekDotNetSdkEnableSymbolsOnPack)' == 'true'">
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <WarnOnPackingNonPackableProject>true</WarnOnPackingNonPackableProject>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(CloudTekDotNetSdkEnableEmbeddedSymbolsOnPack)' == 'true'">
+    <!-- Embed PDBs in .nupkg because Azure Artifacts doesn't support .snupkg yet -->
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>
+      $(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb
+    </AllowedOutputExtensionsInPackageBuildOutputFolder>
+    <IncludeSymbols>false</IncludeSymbols>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(CloudTekDotNetSdkEnableGlobalEditorConfig)' == 'true'">
+    <GlobalAnalyzerConfigFiles Include="$(MSBuildThisFileDirectory)editor.globalconfig" Link="editor.globalconfig" />
+  </ItemGroup>
+</Project>

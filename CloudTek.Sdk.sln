@@ -15,6 +15,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		readme.md = readme.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{5C716494-F2EC-47FB-BA0C-263775A0E360}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudTek.Sdk.Tests", "tests\CloudTek.Sdk.Tests\CloudTek.Sdk.Tests.csproj", "{6FC5867A-E0AE-470C-AF3E-8ACA2D627E70}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,8 +32,13 @@ Global
 		{DAFFF26B-BCC1-41AB-8EFB-E2945B46A24D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAFFF26B-BCC1-41AB-8EFB-E2945B46A24D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAFFF26B-BCC1-41AB-8EFB-E2945B46A24D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FC5867A-E0AE-470C-AF3E-8ACA2D627E70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FC5867A-E0AE-470C-AF3E-8ACA2D627E70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FC5867A-E0AE-470C-AF3E-8ACA2D627E70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FC5867A-E0AE-470C-AF3E-8ACA2D627E70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{DAFFF26B-BCC1-41AB-8EFB-E2945B46A24D} = {4EAFBCE8-F393-43B0-9E70-8FF7D454E90E}
+		{6FC5867A-E0AE-470C-AF3E-8ACA2D627E70} = {5C716494-F2EC-47FB-BA0C-263775A0E360}
 	EndGlobalSection
 EndGlobal

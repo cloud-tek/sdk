@@ -1,0 +1,35 @@
+<Project>
+
+  <!-- Setup this SDKs defaults -->
+  <PropertyGroup>
+    <!-- Enable default analyzers if CPM is not used. -->
+    <UseDotNetSdkDefaultAnalyzers Condition="'$(UseDotNetSdkDefaultAnalyzers)' == '' And '$(ManagePackageVersionsCentrally)' != 'true'">true</UseDotNetSdkDefaultAnalyzers>
+    <CloudTekDotNetSdkEnableStyleCopConfig Condition="'$(CloudTekDotNetSdkEnableStyleCopConfig)' == ''">true</CloudTekDotNetSdkEnableStyleCopConfig>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(UseDotNetSdkDefaultAnalyzers)' == 'true'">
+    <CloudTekDotNetSdkEnableAsyncFixer Condition="'$(CloudTekDotNetSdkEnableAsyncFixer)' == ''">true</CloudTekDotNetSdkEnableAsyncFixer>
+    <CloudTekDotNetSdkEnableMeziantou Condition="'$(CloudTekDotNetSdkEnableMeziantou)' == ''">true</CloudTekDotNetSdkEnableMeziantou>
+    <CloudTekDotNetSdkEnableStyleCop Condition="'$(CloudTekDotNetSdkEnableStyleCop)' == ''">true</CloudTekDotNetSdkEnableStyleCop>
+  </PropertyGroup>
+
+  <!--
+    Include stylecop configuration if we include StyleCop analyzer within this Sdk,
+    or if it was included externally as GlobalPackageReference when CPM is enabled.
+  -->
+  <ItemGroup Condition="'$(CloudTekDotNetSdkEnableStyleCopConfig)' == 'true' And ('$(CloudTekDotNetSdkEnableStyleCop)' == 'true' Or @(GlobalPackageReference->WithMetadataValue('Identity','StyleCop.Analyzers')->Count()) > 0)">
+    <AdditionalFiles Include="$(MSBuildThisFileDirectory)stylecop.json" Link="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup Label="ImplicitUsings adjustments" Condition="('$(ImplicitUsings)' == 'true' Or '$(ImplicitUsings)' == 'enable') And '$(CloudTekDotNetSdkEnableImplicitUsingsAdjustments)' == 'true'">
+    <!-- Add Immutable as we often use them -->
+    <Using Include="System.Collections.Immutable" />
+    <!-- Remove Logging because it conflicts with Serilog which we use by default -->
+    <Using Remove="Microsoft.Extensions.Logging" />
+    <!-- Remove Http because we want to explicitly enforce devs to think twice before using System.Net.Http -->
+    <Using Remove="System.Net.Http" />
+  </ItemGroup>
+
+  <Import Project="CloudTek.DotNet.Sdk.CSharp.Analyzers.targets" />
+
+</Project>
