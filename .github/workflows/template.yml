@@ -70,6 +70,11 @@ jobs:
       with:
         name: packages
         path: artifacts/packages
+    - name: diag
+      if: success() || failure()
+      shell: bash
+      run: |
+        tree .
     - name: Test Report
       uses: dorny/test-reporter@v1
       if: success() || failure()
