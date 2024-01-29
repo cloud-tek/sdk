@@ -2,21 +2,21 @@
 
   <PropertyGroup>
     <!--
-      Indicate to other targets that Cloudtek.DotnetSdk is being used.
+      Indicate to other targets that CloudTek.DotnetSdk is being used.
     -->
-    <UsingCloudtekDotnetSdk>true</UsingCloudtekDotnetSdk>
+    <UsingCloudTekDotnetSdk>true</UsingCloudTekDotnetSdk>
 
     <!--
       Import our custom targets after Directory.Build.targets is imported
     -->
-    <CustomAfterDirectoryBuildTargets>$(CustomAfterDirectoryBuildTargets);$(MSBuildThisFileDirectory)Cloudtek.DotNet.Sdk.targets</CustomAfterDirectoryBuildTargets>
+    <CustomAfterDirectoryBuildTargets>$(CustomAfterDirectoryBuildTargets);$(MSBuildThisFileDirectory)CloudTek.DotNet.Sdk.targets</CustomAfterDirectoryBuildTargets>
   </PropertyGroup>
 
   <Import Project="CloudTek.DotNet.Sdk.props" />
 
   <Target Name="DotnetSdkValidation">
     <Error
-      Text="Cloudtek.Sdk requires .NET SDK v8.0.100+ to be used, but $(NETCoreSdkVersion) was found."
+      Text="CloudTek.Sdk requires .NET SDK v8.0.100+ to be used, but $(NETCoreSdkVersion) was found."
       Condition="$([MSBuild]::VersionLessThan('$(NETCoreSdkVersion)', '8.0'))" />
   </Target>
 
