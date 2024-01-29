@@ -10,17 +10,14 @@ public class ProjectValidationTests
         var msgPath = project.GetFilepath("message.txt");
 
         // Act
-        await project.RunDotNetToolRestore()
-          .ConfigureAwait(false);
-        var result = await project.RunDotNetBuild()
-          .ConfigureAwait(false);
+        await project.RunDotNetToolRestore();
+        var result = await project.RunDotNetBuild()!;
 
         // Assert
         var output = result.stdOut + result.stdErr;
         if (Path.Exists(msgPath))
         {
-          var msg = await File.ReadAllTextAsync(msgPath)
-            .ConfigureAwait(false);
+          var msg = await File.ReadAllTextAsync(msgPath);
           output
             .Contains(msg, StringComparison.InvariantCultureIgnoreCase)
             .Should()

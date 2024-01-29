@@ -71,6 +71,6 @@ internal record Project(string Name)
     }
     // simulate CI builds, that changes some switches in Sdk
     startInfo.Environment["CI"] = "true";
-    return Process.Start(startInfo);
+    return Process.Start(startInfo)!;
   }
 }
