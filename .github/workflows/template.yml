@@ -61,7 +61,7 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     - name: dotnet test
       if: inputs.Test
-      run: dotnet test --no-build --no-restore --logger "trx;LogFileName=test-results.trx" --results-directory ${{ github.workspace }}/tests/results
+      run: dotnet test --logger "trx;LogFileName=test-results.trx" --results-directory ${{ github.workspace }}/tests/results
     - name: dotnet pack
       if: inputs.Pack
       run: dotnet pack -v normal -c Release --no-build --include-symbols --include-source -o package
