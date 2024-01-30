@@ -1,93 +1,23 @@
-<Project>
-  <PropertyGroup Label="Target Platforms">
-    <NetCoreVersions>net8.0</NetCoreVersions>
-    <NetStandardVersions>netstandard2.0;netstandard2.1</NetStandardVersions>
-    <LibraryTargetFrameworks>$(NetCoreVersions);$(NetStandardVersions)</LibraryTargetFrameworks>
-    <ExecutableTargetFrameworks>$(NetCoreVersions)</ExecutableTargetFrameworks>
+<Project InitialTargets="DotnetSdkValidation">
+
+  <PropertyGroup>
+    <!--
+      Indicate to other targets that CloudTek.DotnetSdk is being used.
+    -->
+    <UsingCloudTekDotnetSdk>true</UsingCloudTekDotnetSdk>
+
+    <!--
+      Import our custom targets after Directory.Build.targets is imported
+    -->
+    <CustomAfterDirectoryBuildTargets>$(CustomAfterDirectoryBuildTargets);$(MSBuildThisFileDirectory)CloudTek.DotNet.Sdk.targets</CustomAfterDirectoryBuildTargets>
   </PropertyGroup>
 
-  <PropertyGroup Label="Project Settings">
-    <LangVersion>latest</LangVersion>
-    <AnalysisMode>Recommended</AnalysisMode>
-    <AnalysisLevel>latest</AnalysisLevel>
-    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <!-- Documentation can be enforced per-project -->
-    <GenerateDocumentationFile>false</GenerateDocumentationFile>
-    <!-- Some devs might want to turn off errors for warning for local development -->
-    <TreatWarningsAsErrors Condition=" '$(TreatWarningsAsErrors)' != 'false' ">true</TreatWarningsAsErrors>
-  </PropertyGroup>
+  <Import Project="CloudTek.DotNet.Sdk.props" />
 
-  <ItemGroup Label="ImplicitUsings additional includes">
-    <Using Include="System.Collections.Immutable" />
-  </ItemGroup>
+  <Target Name="DotnetSdkValidation">
+    <Error
+      Text="CloudTek.Sdk requires .NET SDK v8.0.100+ to be used, but $(NETCoreSdkVersion) was found."
+      Condition="$([MSBuild]::VersionLessThan('$(NETCoreSdkVersion)', '8.0'))" />
+  </Target>
 
-  <PropertyGroup Label="Build Output">
-    <RepoRoot Condition="'$(RepoRoot)' == ''">$([MSBuild]::GetDirectoryNameOfFileAbove('$(MSBuildProjectDirectory)', 'global.json'))</RepoRoot>
-    <BaseOutputPath>$(RepoRoot)\bin\$(MSBuildProjectName)</BaseOutputPath>
-    <BaseIntermediateOutputPath>$(RepoRoot)\obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
-    <PackageOutputPath>$(RepoRoot)\nuget</PackageOutputPath>
-  </PropertyGroup>
-
-  <ItemGroup Label="StyleCop" Condition="'$(CloudTekSdkEnableStyleCop)' != false">
-    <AdditionalFiles Include="$(MSBuildThisFileDirectory)stylecop.json" Link="stylecop.json"/>
-    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.556"> <!-- need to use beta version to get the latest fixes -->
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup Label="Analyzers:AsyncFixer" Condition="'$(CloudTekSdkEnableAsyncFixer)' != false">
-    <PackageReference Include="AsyncFixer" Version="1.6.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup Label="Analyzers:Meziantou" Condition="'$(CloudTekSdkEnableMeziantou)' != false">
-    <PackageReference Include="Meziantou.Analyzer" Version="2.0.127">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup Label="Analyzers:SmartAnalyzers" Condition=" '$(Configuration)' == 'Debug' AND '$(Nullable)' == 'enable' AND '$(CloudTekSdkEnableSmartAnalyzers)' != false ">
-    <PackageReference Include="SmartAnalyzers.CSharpExtensions.Annotations" Version="4.2.7">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; compile; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
-    <AssemblyAttribute Include="SmartAnalyzers.CSharpExtensions.Annotations.InitRequiredForNotNullAttribute" />
-  </ItemGroup>
-
-  <ItemGroup Label="Global editor config" Condition="'$(CloudTekSdkDisableGlobalEditorConfig)' != true">
-    <GlobalAnalyzerConfigFiles Include="$(MSBuildThisFileDirectory)editor.globalconfig" Link="editor.globalconfig" />
-  </ItemGroup>
-
-  <PropertyGroup Label="Properties dedicated for test projects" Condition="$(MSBuildProjectDirectory.Contains(`test`))">
-    <!-- Exclude analyzer warnings in test projects -->
-    <!-- CA1707: Identifiers should not contain underscores -->
-    <!-- IDE0005: error EnableGenerateDocumentationFile -->
-    <NoWarn>$(NoWarn);CA1707;IDE0005</NoWarn>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" !$(MSBuildProjectDirectory.Contains(`test`)) ">
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <!-- SourceLink configuration -->
-    <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <!-- Embed PDBs in .nupkg because Azure Artifacts doesn't support .snupkg yet -->
-    <AllowedOutputExtensionsInPackageBuildOutputFolder>
-      $(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb
-    </AllowedOutputExtensionsInPackageBuildOutputFolder>
-    <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-  </PropertyGroup>
-
-  <PropertyGroup Label="NuGet Properties" Condition="$(CloudTekSdkCopyright) != ''">
-    <Authors>$(CloudTekSdkCopyright)</Authors>
-    <Company>$(CloudTekSdkCopyright)</Company>
-    <Copyright>© $(CloudTekSdkCopyright). All rights reserved.</Copyright>
-    <Description>$(MSBuildProjectName)</Description>
-    <Tags>$(CloudTekSdkCopyright)</Tags>
-  </PropertyGroup>
 </Project>

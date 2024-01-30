@@ -92,7 +92,7 @@ In order to override or disable some of the imported components, the behavior ch
 
 * `*.csproj` - project settings:
 ```xml
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.CloudTek.DotNet">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <GenerateDocumentationFile>true<GenerateDocumentationFile>

@@ -14,6 +14,11 @@ on:
         type: boolean
         required: false
         default: true
+      Test:
+        description: 'Test the project'
+        type: boolean
+        required: false
+        default: true
       Pack:
         description: 'Pack the project'
         type: boolean
@@ -54,6 +59,9 @@ jobs:
     - name: dotnet build
       if: inputs.Build
       run: dotnet build --configuration Release --no-restore
+    - name: dotnet test
+      if: inputs.Test
+      run: dotnet test --logger "trx;LogFileName=test-results.trx" --results-directory ${{ github.workspace }}/tests/results
     - name: dotnet pack
       if: inputs.Pack
       run: dotnet pack -v normal -c Release --no-build --include-symbols --include-source -o package
@@ -62,6 +70,13 @@ jobs:
       with:
         name: packages
         path: artifacts/packages
+    - name: test report
+      uses: dorny/test-reporter@v1
+      if: success() || failure()
+      with:
+        name: XUnit Tests
+        path: ${{ github.workspace }}/tests/results/*.trx
+        reporter: dotnet-trx
 
   push:
     runs-on: ubuntu-latest

@@ -16,8 +16,14 @@ on:
     paths:
       - ".github/workflows/**"
       - "src/**"
+      - "tests/**"
   workflow_dispatch:
     inputs: {}
+
+permissions:
+  contents: read
+  actions: read
+  checks: write
 
 env:
   DOTNET_ROLL_FORWARD: Major

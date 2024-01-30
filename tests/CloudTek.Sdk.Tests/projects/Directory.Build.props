@@ -1,0 +1,5 @@
+<Project>
+  <!-- Prevents inclusion of files from directories above -->
+
+  <Import Project="../../../src/CloudTek.Sdk/Sdk/Sdk.props" />
+</Project>
