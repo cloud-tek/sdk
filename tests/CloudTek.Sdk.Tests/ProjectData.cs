@@ -14,11 +14,11 @@ public class ProjectData
   private static Lazy<string> ThisFileDirectoryLazy { get; } =
     new(() =>
     {
-      return Directory.GetParent(GetCallerFilePath())!.FullName;
-
+      var result = Directory.GetParent(GetCallerFilePath())!.FullName;
+      return result;
       static string GetCallerFilePath([CallerFilePath] string? path = null) => path ?? "";
     });
 
   private static string ThisFileDirectory => ThisFileDirectoryLazy.Value;
-  internal static string ProjectsDirectory { get; } = Path.Combine(ThisFileDirectory, "projects");
+  internal static string ProjectsDirectory { get; } = Path.Combine(ThisFileDirectory, "/../", "projects");
 }
