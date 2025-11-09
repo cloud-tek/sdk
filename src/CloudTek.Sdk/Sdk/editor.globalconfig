@@ -172,6 +172,40 @@ dotnet_diagnostic.IDE2003.severity = suggestion
 # csharp_style_allow_blank_line_after_colon_in_constructor_initializer_experimental
 dotnet_diagnostic.IDE2004.severity = warning
 
+# C# 14 Field-Backed Properties
+dotnet_diagnostic.CS9258.severity = warning
+dotnet_diagnostic.IDE0251.severity = suggestion
+dotnet_style_prefer_field_keyword = true:suggestion
+
+# Span Conversions
+dotnet_diagnostic.CS9200.severity = warning
+dotnet_diagnostic.CS9201.severity = suggestion
+dotnet_diagnostic.CA1860.severity = warning
+dotnet_diagnostic.CA1861.severity = suggestion
+csharp_style_prefer_readonly_span = true:warning
+
+# Extension Blocks
+dotnet_diagnostic.CS9210.severity = error
+dotnet_diagnostic.IDE0260.severity = suggestion
+csharp_style_prefer_extension_block = true:suggestion
+
+# Nameof with Unbound Generics
+dotnet_diagnostic.IDE0262.severity = suggestion
+csharp_style_prefer_unbound_generic_nameof = true:suggestion
+
+# Lambda Parameter Modifiers
+dotnet_diagnostic.CS9230.severity = warning
+dotnet_diagnostic.CS9231.severity = error
+csharp_style_lambda_parameter_modifiers = infer:suggestion
+
+# Null-Conditional Assignment
+dotnet_diagnostic.IDE0270.severity = suggestion
+csharp_style_prefer_null_conditional_assignment = true:suggestion
+
+# Breaking Changes
+dotnet_diagnostic.CS9500.severity = warning
+dotnet_diagnostic.CS9501.severity = warning
+
 # CSharp code style settings:
 csharp_prefer_braces = when_multiline:suggestion
 csharp_using_directive_placement = outside_namespace:warning
