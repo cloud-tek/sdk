@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.CSharp.RuntimeBinder;
 
-namespace Net8Lib.Valid;
+namespace Net10Lib.Valid;
 
 /// <summary>
 /// Docs

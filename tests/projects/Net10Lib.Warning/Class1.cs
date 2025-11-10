@@ -1,4 +1,4 @@
-namespace Net8LibWarning;
+namespace Net10LibWarning;
 
 public class Class1
 {
