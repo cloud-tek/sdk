@@ -25,7 +25,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net8Lib.Valid", "tests\proj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net8Lib.Warning", "tests\projects\Net8Lib.Warning\Net8Lib.Warning.csproj", "{5809FDCF-A6A7-40D5-BC2A-821485A8CAD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net6Sdk.Error", "tests\projects\OutdatedSdk.Error\Net6Sdk.Error.csproj", "{0DCB13E9-FEC8-4B40-A371-B8A482BEA1E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutDatedSdk.Error", "tests\projects\OutdatedSdk.Error\OutDatedSdk.Error.csproj", "{0DCB13E9-FEC8-4B40-A371-B8A482BEA1E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
