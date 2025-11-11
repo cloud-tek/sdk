@@ -5,8 +5,8 @@ on:
         description: 'Directory to build'
         type: string
         required: true
-      NetVersion:
-        description: 'Version of .NET to use'
+      NetVersions:
+        description: 'Versions of .NET to install (JSON array, e.g., ["9.0.100", "10.0.100-rc.2.25502.107"])'
         type: string
         required: true
       Build:
@@ -47,10 +47,10 @@ jobs:
     #   nupkgFilename: ${{ steps.nupkg.outputs.filename }}
     steps:
     - uses: actions/checkout@v3
-    - name: setup .NET
+    - name: setup .NET SDKs
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: ${{ inputs.NetVersion }}
+        dotnet-version: ${{ fromJSON(inputs.NetVersions) }}
     - name: dotnet tool restore
       run: dotnet tool restore
     - name: dotnet restore
