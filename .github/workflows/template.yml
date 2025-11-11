@@ -6,7 +6,7 @@ on:
         type: string
         required: true
       NetVersions:
-        description: 'Versions of .NET to install (JSON array, e.g., ["9.0.100", "10.0.100-rc.2.25502.107"])'
+        description: 'Versions of .NET to install (JSON array, e.g., ["9.0.100", "10.0.100"])'
         type: string
         required: true
       Build:
