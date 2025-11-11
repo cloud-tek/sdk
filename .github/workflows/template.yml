@@ -65,7 +65,7 @@ jobs:
     - name: dotnet pack
       if: inputs.Pack
       run: dotnet pack -v normal -c Release --no-build --include-symbols --include-source -o package
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       if: inputs.push
       with:
         name: packages
