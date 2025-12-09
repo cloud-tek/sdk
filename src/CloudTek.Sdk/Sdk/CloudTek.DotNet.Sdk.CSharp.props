@@ -17,7 +17,7 @@
   </PropertyGroup>
 
   <!-- Exclude selected warnings in test projects -->
-  <PropertyGroup Condition="$(MSBuildProjectName.Contains(`Tests`))">
+  <PropertyGroup Condition="$(MSBuildProjectName.Contains('Tests'))">
     <!-- CA1707: Identifiers should not contain underscores -->
     <NoWarn>$(NoWarn);CA1707</NoWarn>
     <!-- CA1822: Mark members as static -->
