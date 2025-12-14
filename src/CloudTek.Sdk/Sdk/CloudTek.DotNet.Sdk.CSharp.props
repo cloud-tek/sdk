@@ -28,4 +28,15 @@
     <NoWarn>$(NoWarn);CS1591</NoWarn>
   </PropertyGroup>
 
+   <!-- Exclude selected warnings in Aspire projects -->
+  <PropertyGroup Condition="$(MSBuildProjectName.Contains('Aspire')) Or $(MSBuildProjectName.Contains('ServiceDefaults'))">
+    <!-- CA1707: Identifiers should not contain underscores -->
+    <NoWarn>$(NoWarn);CA1707</NoWarn>
+    <!-- CA1822: Mark members as static -->
+    <NoWarn>$(NoWarn);CA1822</NoWarn>
+    <!-- IDE0005: Remove unnecessary using directives -->
+    <NoWarn>$(NoWarn);IDE0005</NoWarn>
+    <!-- CS1591: Missing XML comment for publicly visible type or member -->
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+  </PropertyGroup>
 </Project>
