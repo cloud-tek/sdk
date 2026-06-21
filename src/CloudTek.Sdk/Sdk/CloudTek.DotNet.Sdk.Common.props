@@ -14,11 +14,15 @@
   </PropertyGroup>
 
   <!-- Warnings as Errors -->
+  <!--
+    Strict by default: TreatWarningsAsErrors is ALWAYS on, locally and in CI alike, so that
+    "green locally" means "green in CI" for analyzer diagnostics. Previously this was gated on
+    ContinuousIntegrationBuild (CI/TF_BUILD), which produced false greens locally. See
+    docs/adr/0001-strict-treat-warnings-as-errors.md.
+    Opt out per-project with CloudTekDotNetSdkEnableTreatWarningsAsErrors=false.
+  -->
   <PropertyGroup Condition="'$(CloudTekDotNetSdkEnableTreatWarningsAsErrors)' == 'true'">
-    <!-- Some devs want Warnings as Errors in local IDE development -->
-    <TreatWarningsAsErrors Condition="'$(BuildingByReSharper)' == 'true'">true</TreatWarningsAsErrors>
-    <!-- Enable Warnings as Errors in CI (or in Azure Pipelines - they don't set CI, only TF_BUILD) -->
-    <TreatWarningsAsErrors Condition="'$(ContinuousIntegrationBuild)' == 'true'">true</TreatWarningsAsErrors>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
 
   <!-- XML documentation adjustments -->
