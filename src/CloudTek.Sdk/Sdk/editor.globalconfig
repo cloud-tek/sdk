@@ -35,24 +35,38 @@ dotnet_analyzer_diagnostic.severity = default
 # Sort using and Import directives with System.* appearing first
 dotnet_sort_system_directives_first = true
 dotnet_separate_import_directive_groups = false
+# NOTE: In a .globalconfig (is_global = true) the "value:severity" shorthand only sets the
+# preference VALUE — the :severity suffix is ignored. Severity must be set with an explicit
+# dotnet_diagnostic.<ID>.severity line. Each style option below pairs the shorthand (value)
+# with its explicit diagnostic severity. See docs/adr/0001-strict-treat-warnings-as-errors.md.
+
 dotnet_style_require_accessibility_modifiers = for_non_interface_members:warning
+dotnet_diagnostic.IDE0040.severity = warning
 
 # Avoid "this." and "Me." if not necessary
 dotnet_style_qualification_for_field = false:error
 dotnet_style_qualification_for_property = false:error
 dotnet_style_qualification_for_method = false:error
 dotnet_style_qualification_for_event = false:error
+dotnet_diagnostic.IDE0003.severity = error
 
 # Use language keywords instead of framework type names for type references
 dotnet_style_predefined_type_for_locals_parameters_members = true:error
 dotnet_style_predefined_type_for_member_access = true:error
+dotnet_diagnostic.IDE0049.severity = error
 
 # Suggest more modern language features when available
 dotnet_style_object_initializer = true:suggestion
+dotnet_diagnostic.IDE0017.severity = suggestion
 dotnet_style_collection_initializer = true:suggestion
+dotnet_diagnostic.IDE0028.severity = suggestion
 dotnet_style_coalesce_expression = true:suggestion
+dotnet_diagnostic.IDE0029.severity = suggestion
+dotnet_diagnostic.IDE0030.severity = suggestion
 dotnet_style_null_propagation = true:suggestion
+dotnet_diagnostic.IDE0031.severity = suggestion
 dotnet_style_explicit_tuple_names = true:suggestion
+dotnet_diagnostic.IDE0033.severity = suggestion
 
 # Whitespace options
 dotnet_style_allow_multiple_blank_lines_experimental = false
@@ -172,12 +186,53 @@ dotnet_diagnostic.IDE2003.severity = suggestion
 # csharp_style_allow_blank_line_after_colon_in_constructor_initializer_experimental
 dotnet_diagnostic.IDE2004.severity = warning
 
+# C# 14 Field-Backed Properties
+dotnet_diagnostic.CS9258.severity = warning
+dotnet_diagnostic.IDE0251.severity = suggestion
+dotnet_style_prefer_field_keyword = true:suggestion
+
+# Span Conversions
+dotnet_diagnostic.CS9200.severity = warning
+dotnet_diagnostic.CS9201.severity = suggestion
+dotnet_diagnostic.CA1860.severity = warning
+dotnet_diagnostic.CA1861.severity = suggestion
+csharp_style_prefer_readonly_span = true:warning
+
+# Extension Blocks
+dotnet_diagnostic.CS9210.severity = error
+dotnet_diagnostic.IDE0260.severity = suggestion
+csharp_style_prefer_extension_block = true:suggestion
+
+# Nameof with Unbound Generics
+dotnet_diagnostic.IDE0262.severity = suggestion
+csharp_style_prefer_unbound_generic_nameof = true:suggestion
+
+# Lambda Parameter Modifiers
+dotnet_diagnostic.CS9230.severity = warning
+dotnet_diagnostic.CS9231.severity = error
+csharp_style_lambda_parameter_modifiers = infer:suggestion
+
+# Null-Conditional Assignment
+dotnet_diagnostic.IDE0270.severity = suggestion
+csharp_style_prefer_null_conditional_assignment = true:suggestion
+
+# Breaking Changes
+dotnet_diagnostic.CS9500.severity = warning
+dotnet_diagnostic.CS9501.severity = warning
+
 # CSharp code style settings:
+# NOTE: csharp_prefer_braces (IDE0011) is intentionally left without an explicit severity line.
+# Its shorthand is self-conflicting in this file (when_multiline here vs true:silent below), so
+# pinning a severity is deferred to avoid an unintended brace-enforcement wave.
 csharp_prefer_braces = when_multiline:suggestion
 csharp_using_directive_placement = outside_namespace:warning
+dotnet_diagnostic.IDE0065.severity = warning
 csharp_style_namespace_declarations = file_scoped:suggestion
+dotnet_diagnostic.IDE0161.severity = suggestion
 csharp_style_unused_value_expression_statement_preference = discard_variable:suggestion
+dotnet_diagnostic.IDE0058.severity = suggestion
 csharp_style_unused_value_assignment_preference = discard_variable:suggestion
+dotnet_diagnostic.IDE0059.severity = suggestion
 
 # Newline settings
 csharp_new_line_before_open_brace = all
@@ -205,24 +260,39 @@ csharp_style_allow_blank_line_after_colon_in_constructor_initializer_experimenta
 csharp_style_var_for_built_in_types = true:warning
 csharp_style_var_when_type_is_apparent = true:warning
 csharp_style_var_elsewhere = true:warning
+dotnet_diagnostic.IDE0007.severity = warning
 
 # Prefer method-like constructs to have a block body
 csharp_style_expression_bodied_methods = false:none
+dotnet_diagnostic.IDE0022.severity = none
 csharp_style_expression_bodied_constructors = false:none
+dotnet_diagnostic.IDE0021.severity = none
 csharp_style_expression_bodied_operators = false:none
+dotnet_diagnostic.IDE0023.severity = none
+dotnet_diagnostic.IDE0024.severity = none
 
 # Prefer property-like constructs to have an expression-body
 csharp_style_expression_bodied_properties = true:error
+dotnet_diagnostic.IDE0025.severity = error
 csharp_style_expression_bodied_indexers = true:error
+dotnet_diagnostic.IDE0026.severity = error
 csharp_style_expression_bodied_accessors = true:error
+dotnet_diagnostic.IDE0027.severity = error
 csharp_style_expression_bodied_local_functions = true:error
+dotnet_diagnostic.IDE0061.severity = error
 
 # Suggest more modern language features when available
 csharp_style_pattern_matching_over_is_with_cast_check = true:error
+dotnet_diagnostic.IDE0020.severity = error
+dotnet_diagnostic.IDE0038.severity = error
 csharp_style_pattern_matching_over_as_with_null_check = true:error
+dotnet_diagnostic.IDE0019.severity = error
 csharp_style_inlined_variable_declaration = true:suggestion
+dotnet_diagnostic.IDE0018.severity = suggestion
 csharp_style_throw_expression = true:error
+dotnet_diagnostic.IDE0016.severity = error
 csharp_style_conditional_delegate_call = true:suggestion
+dotnet_diagnostic.IDE1005.severity = suggestion
 
 # Spacing
 csharp_space_after_cast = false

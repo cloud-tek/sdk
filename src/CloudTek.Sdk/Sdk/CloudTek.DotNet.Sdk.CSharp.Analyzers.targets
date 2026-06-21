@@ -1,8 +1,7 @@
 <Project>
-
   <ItemGroup Label="StyleCop" Condition="'$(CloudTekDotNetSdkEnableStyleCop)' == 'true'">
     <!-- https://github.com/DotNetAnalyzers/StyleCopAnalyzers -->
-    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.435"> <!-- need to use beta version to get the latest fixes -->
+    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.556"> <!-- need to use beta version to get the latest fixes -->
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
@@ -18,10 +17,9 @@
 
   <ItemGroup Label="Meziantou" Condition="'$(CloudTekDotNetSdkEnableMeziantou)' == 'true'">
     <!-- https://github.com/meziantou/Meziantou.Analyzer -->
-    <PackageReference Include="Meziantou.Analyzer" Version="1.0.758">
+    <PackageReference Include="Meziantou.Analyzer" Version="2.0.250">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-
 </Project>

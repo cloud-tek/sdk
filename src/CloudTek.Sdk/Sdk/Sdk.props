@@ -16,8 +16,8 @@
 
   <Target Name="DotnetSdkValidation">
     <Error
-      Text="CloudTek.Sdk requires .NET SDK v8.0.100+ to be used, but $(NETCoreSdkVersion) was found."
-      Condition="$([MSBuild]::VersionLessThan('$(NETCoreSdkVersion)', '8.0'))" />
+      Text="CloudTek.Sdk requires .NET SDK v10.0.100+ to be used, but $(NETCoreSdkVersion) was found."
+      Condition="$([MSBuild]::VersionLessThan('$(NETCoreSdkVersion)', '10.0'))" />
   </Target>
 
 </Project>

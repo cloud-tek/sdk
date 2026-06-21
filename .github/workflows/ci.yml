@@ -34,7 +34,7 @@ jobs:
     name: build
     with:
       Directory: src/CloudTek.Sdk
-      NetVersion: "8.0.100"
+      NetVersions: '["9.0.100", "10.0.100"]'
       Build:        true
       Pack:         true
       NuGetApiUrl:  'https://api.nuget.org/v3/index.json'
